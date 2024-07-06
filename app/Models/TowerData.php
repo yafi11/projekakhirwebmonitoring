@@ -14,7 +14,7 @@ class TowerData extends Model
 
     public function towertypes(): BelongsTo
     {
-        return $this->belongsTo(Towertype::class, 'towertype_id');
+        return $this->belongsTo(TowerType::class, 'towertype_id');
     }
 
     public function towerfactory(): BelongsTo
