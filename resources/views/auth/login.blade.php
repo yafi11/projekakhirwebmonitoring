@@ -20,7 +20,7 @@
         </div>
         <div class="card card-md">
           <div class="card-body">
-            <h2 class="h2 text-center mb-4">Login to your account. Helloworld</h2>
+            <h2 class="h2 text-center mb-4">Login to your account</h2>
             <form action="/login" method="post" autocomplete="off" novalidate>
               @csrf 
               <div class="mb-3">
