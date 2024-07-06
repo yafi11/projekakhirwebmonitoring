@@ -85,7 +85,7 @@
         <table class="table table-vcenter card-table table-striped">
           <thead>
             <tr>
-              <th>Tower Fabrication</th>
+              <th>Tower Factory</th>
               <th>Total PO</th>
               <th>ON PRODUCTION</th>
               <th>QC APPROVE</th>
