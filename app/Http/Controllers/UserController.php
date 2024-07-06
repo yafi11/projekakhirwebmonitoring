@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -42,7 +43,7 @@ class UserController extends Controller
         $user->level = $request ->level;
 
         $user->save();
-        session()->flash('success', 'Update Success');
+        Session::flash('success', 'Update Success');
         return redirect()->route('user.index');
     }
 
@@ -50,7 +51,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user -> delete();
-        session()->flash('danger', 'Delete Success');
+        Session::flash('danger', 'Delete Success');
         return redirect()->route('user.index');
     }
 }

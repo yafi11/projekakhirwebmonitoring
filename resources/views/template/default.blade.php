@@ -64,7 +64,7 @@
             </div>
             @endif
 
-            @if (session('message'))
+            @if (session()->has('message'))
             <div class="alert alert-info">
               <div class="d-flex">
                 <div>

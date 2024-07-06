@@ -56,8 +56,8 @@
                 <div class="col-lg-4">
                     <div class="mb-6">
                         <label class="form-label">Status Material</label>
-                        <select type="text" name="statusmaterial" id="" class="form-select" placeholder="" value="{{$data->statusmaterial}}">
-                            <option value="{{$data->statusmaterial}}" selected hidden>{{$data->statusmaterial}}</option>                                            
+                        <select type="text" name="towerprogress" id="" class="form-select" placeholder="" value="{{$data->towerprogress}}">
+                            <option value="{{$data->towerprogress}}" selected hidden>{{$data->towerprogress}}</option>                                            
                             <option value="ON PRODUCTION">ON PRODUCTION</option>
                             <option value="QC CHECK DONE">QC CHECK DONE</option>
                             <option value="RECTIFICATION">RECTIFICATION</option>
@@ -67,13 +67,13 @@
                 <div class="col-lg-4">
                     <div class="mb-6">
                         <label class="form-label">Forecast Date</label>
-                        <input type="date" name="forecast_date" class="form-control" placeholder="Select a date" id="datepicker-icon-prepend" value="{{$data->forecast_date}}" fdprocessedid="s54m9">
+                        <input type="date" name="forecastdate" class="form-control" placeholder="Select a date" id="datepicker-icon-prepend" value="{{$data->forecastdate}}" fdprocessedid="s54m9">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-6">
                         <label class="form-label">Acceptance Date</label>
-                        <input type="date" name="acc_date" class="form-control" placeholder="Select a date" id="datepicker-icon-prepend" value="{{$data->acc_date}}" fdprocessedid="s54m9">
+                        <input type="date" name="acceptdate" class="form-control" placeholder="Select a date" id="datepicker-icon-prepend" value="{{$data->acceptdate}}" fdprocessedid="s54m9">
                     </div>
                 </div>
             </div>

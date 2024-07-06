@@ -6,13 +6,27 @@ use App\Models\TowerData;
 use App\Models\TowerFactory;
 use App\Models\Towertype;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class QCmonitoringController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('qcmonitor.index',[
-            'datas' =>TowerData::get(),
+        $keyword = $request->keyword;
+        // Mendapatkan hasil pencarian
+        $data = TowerData::where('sitename', 'LIKE', '%'.$keyword.'%')
+                ->orWhere('siteid', 'LIKE', '%'.$keyword.'%')
+                ->orWhere('towerprogress', 'LIKE', '%'.$keyword.'%')
+                ->orWhere('qcresult', 'LIKE', '%'.$keyword.'%')
+                ->simplePaginate(10);
+        if ($data->isEmpty()) {
+            // Mengarahkan kembali ke indeks jika hasil pencarian tidak ada
+            Session::flash('message', 'No results found. Showing all records.');
+            return redirect()->back();
+        }
+        // Mengirim hasil pencarian ke tampilan
+        return view('qcmonitor.index', [
+            'datas' => $data,
         ]);
     }
 
@@ -30,10 +44,10 @@ class QCmonitoringController extends Controller
     {
         $data = TowerData::find($id);
 
-        $data->statusmaterial = $request ->statusmaterial;
+        $data->towerprogress = $request ->towerprogress;
         $data->qcresult = $request ->qcresult;
-        $data->forecast_date = $request ->forecast_date;
-        $data->acc_date = $request ->acc_date;
+        $data->forecastdate = $request ->forecastdate;
+        $data->acceptdate = $request ->acceptdate;
         $data->remark = $request ->remark;
         $data->leg = $request ->leg;
         $data->leg_galv = $request ->leg_galv;
@@ -66,14 +80,13 @@ class QCmonitoringController extends Controller
         $data->anc = $request ->anc;
         $data->anc_galv = $request ->anc_galv;
         $data->tmp = $request ->tmp;
-        $data->tmp_galv = $request ->tmp_galv;
         $data->obl = $request ->obl;
         $data->obl_galv = $request ->obl_galv;
         $data->spz = $request ->spz;
         $data->spz_galv = $request ->spz_galv;
 
         $data->save();
-        session()->flash('success', 'Update Success');
+        Session::flash('success', 'Update Success');
         return redirect()->route('qcmonitor.index');
     }
 
@@ -81,7 +94,6 @@ class QCmonitoringController extends Controller
     {
         $data = TowerData::find($id);
         $data -> delete();
-        session()->flash('danger', 'Delete Success');
-        return redirect()->route('qcmonitor.index');
+        Session::flash('danger', 'Delete Success');        return redirect()->route('qcmonitor.index');
     }
 }

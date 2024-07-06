@@ -9,6 +9,7 @@ use App\Http\Controllers\QCmonitoringController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/',[AuthenticationController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login',[AuthenticationController::class, 'login']);
 Route::get('/logout',[AuthenticationController::class, 'logout'])->name('logout');

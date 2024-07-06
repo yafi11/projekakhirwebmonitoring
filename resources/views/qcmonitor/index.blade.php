@@ -10,6 +10,17 @@
   </div>
 </div>
 
+<div class="row g-2 align-items-center my-3">
+  <div class="col-lg-4">
+    <form action="" method="GET">
+      <div class="input-group">
+        <input type="text" value="" class="form-control" name="keyword" placeholder="keyword" fdprocessedid="1228xl">
+        <button class="input-group-text">Search</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 
 <div class="col-12">
     <div class="card">

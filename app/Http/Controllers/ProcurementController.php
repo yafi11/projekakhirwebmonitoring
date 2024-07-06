@@ -6,6 +6,8 @@ use App\Models\TowerData;
 use App\Models\TowerFactory;
 use App\Models\TowerType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 class ProcurementController extends Controller
 {
@@ -15,10 +17,11 @@ class ProcurementController extends Controller
         // Mendapatkan hasil pencarian
         $data = TowerData::where('sitename', 'LIKE', '%'.$keyword.'%')
                 ->orWhere('siteid', 'LIKE', '%'.$keyword.'%')
+                ->orWhere('ponumber', 'LIKE', '%'.$keyword.'%')
                 ->simplePaginate(10);
         if ($data->isEmpty()) {
             // Mengarahkan kembali ke indeks jika hasil pencarian tidak ada
-            session()->flash('message', 'No results found. Showing all records.');
+            Session::flash('message', 'No results found. Showing all records.');
             return redirect()->back();
         }        
         // Mengirim hasil pencarian ke tampilan
@@ -47,7 +50,7 @@ class ProcurementController extends Controller
         $data->statuspo = $request ->statuspo;
 
         $data->save();
-        session()->flash('success', 'Update Success');
+        Session::flash('success', 'Update Success');
         return redirect()->back();
     }
 
@@ -73,7 +76,7 @@ class ProcurementController extends Controller
         $data->statuspo = $request ->statuspo;
 
         $data->save();
-        session()->flash('success', 'Update Success');
+        Session::flash('success', 'Update Success');
         return redirect()->route('procurement.index');
     }
 
@@ -81,7 +84,7 @@ class ProcurementController extends Controller
     {
         $data = TowerData::find($id);
         $data -> delete();
-        session()->flash('danger', 'Delete Success');
+        Session::flash('danger', 'Delete Success');
         return redirect()->route('procurement.index');
     }
 }
